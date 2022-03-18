@@ -55,7 +55,8 @@ public class CurrencyConversionController {
     @GetMapping("/conversion-WebClient/from/{from}/to/{to}/quantity/{quantity}")
     public CurrencyConversionBean currencyConversionWebClient(
             @PathVariable String from, @PathVariable String to, @PathVariable BigDecimal quantity) {
-        WebClient client = WebClient.create("http://localhost:8000");
+        //WebClient client = WebClient.create("http://localhost:8000");
+        WebClient client = WebClient.create("forex");
         CurrencyConversionBean response =
                 client.get().
                         uri("http://localhost:8000/forex/from/{from}/to/{to}", "EUR", "UAH").

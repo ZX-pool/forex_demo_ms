@@ -28,15 +28,15 @@ public class RESTController {
 
 
         //get result using FeignClient
-//        ResponseEntity<CurrencyConversionBean> responseEntity = new RestTemplate().getForEntity(
-//                "http://localhost:8100/conversion-FeignClient/from/{from}/to/{to}/quantity/{quantity}",
-//                CurrencyConversionBean.class, uriVariables);
+        ResponseEntity<CurrencyConversionBean> responseEntity = new RestTemplate().getForEntity(
+                "http://localhost:8100/conversion-FeignClient/from/{from}/to/{to}/quantity/{quantity}",
+                CurrencyConversionBean.class, uriVariables);
 
 
         //get result using WebClient
-        ResponseEntity<CurrencyConversionBean> responseEntity = new RestTemplate().getForEntity(
-                "http://localhost:8100/conversion-WebClient/from/{from}/to/{to}/quantity/{quantity}",
-                CurrencyConversionBean.class, uriVariables);
+//        ResponseEntity<CurrencyConversionBean> responseEntity = new RestTemplate().getForEntity(
+//                "http://localhost:8100/conversion-WebClient/from/{from}/to/{to}/quantity/{quantity}",
+//                CurrencyConversionBean.class, uriVariables);
         CurrencyConversionBean response = responseEntity.getBody();
 
         return String.format("Quantity of currency is =  %s  EUR ! <br>" +
