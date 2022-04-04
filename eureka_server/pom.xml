@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.zx_pool</groupId>
     <artifactId>eureka_server</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>eureka_server</name>
     <description>eureka_server</description>
     <properties>

@@ -1,3 +1,4 @@
+drop table if exists exchange_value;
 create table exchange_value
 (
     id                  INT         NOT NULL PRIMARY KEY AUTO_INCREMENT,

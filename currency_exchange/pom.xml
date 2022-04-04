@@ -6,25 +6,17 @@
     <parent>
         <groupId>com.zx_pool</groupId>
         <artifactId>forex_demo_ms</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+
     </parent>
 
 
     <artifactId>currency_exchange</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+
     <name>currency_exchange</name>
     <description>currency_exchange</description>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-dependencies</artifactId>
 
-            <version>${spring-cloud.version}</version>
-            <type>pom</type>
-            <scope>import</scope>
-
-        </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-parent</artifactId>
@@ -49,10 +41,8 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-openfeign-core</artifactId>
-        </dependency>
+
+        <!-- for WebClient need webflux -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
