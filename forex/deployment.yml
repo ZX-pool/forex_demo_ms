@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: forex-deployment
+  labels:
+    app: forex
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: forex
+  template:
+    metadata:
+      labels:
+        app: forex
+    spec:
+      containers:
+        - name: forex
+          image: zx_pool/forex:1.0.0
+          ports:
+            - containerPort: 8000
+          env:
+            - name: MYSQL_HOST
+              value: 172.25.80.1
+            - name: MYSQL_PORT
+              value: "3306"
+
+

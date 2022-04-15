@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: currencyexchange-deployment
+  labels:
+    app: currencyexchange
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: currencyexchange
+  template:
+    metadata:
+      labels:
+        app: currencyexchange
+    spec:
+      containers:
+        - name: currencyexchange
+          image: zxpool/currencyexchange:1
+          ports:
+            - containerPort: 8100
+          env:
+            - name: EUREKA_HOST
+              value: eureka
+            - name: EUREKA_PORT
+              value: "8761"
+
+
