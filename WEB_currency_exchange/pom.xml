@@ -2,34 +2,24 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
-   <groupId>com.zx_pool</groupId>
-    <artifactId>WEB_currency_exchange</artifactId>
-
-    <name>WEB_currency_exchange</name>
-    <description>WEB_currency_exchange</description>
-
     <parent>
-        <groupId>com.zx_pool</groupId>
-        <artifactId>forex_demo_ms</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.6.4</version>
+        <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
+    <groupId>com.zx_pool</groupId>
+    <artifactId>webexchange</artifactId>
+    <name>webexchange</name>
+    <description>WEB_currency_exchange</description>
+    <version>1</version>
+    <packaging>jar</packaging>
 
     <properties>
         <java.version>11</java.version>
+        <discovery.version>3.1.1</discovery.version>
     </properties>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.zx_pool</groupId>
-                <artifactId>forex_demo_ms</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
 
     <dependencies>
@@ -48,30 +38,13 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>ga.rugal</groupId>
-            <artifactId>feign-client-generator</artifactId>
-            <version>1.0.0</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
-            <version>2.2.6.RELEASE</version>
+            <version>${discovery.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>

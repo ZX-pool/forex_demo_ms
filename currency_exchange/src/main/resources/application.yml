@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: currencyexchange
+
+server:
+  port: 8100
+
+
+eureka:
+  client:
+    enabled: false
+    service-url:
+      default-zone: http://${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}/eureka
+
+forex:
+  url: http://${FOREX_HOST:localhost}:${FOREX_PORT:8000}

@@ -1,5 +1,6 @@
 package com.zx_pool.forexdemomicroservices.web_currency_exchange;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,6 +14,8 @@ import java.util.Map;
 @RestController
 public class RESTController {
 
+    @Value("${currencyexchange.url}")
+    private String CURRENCYEXCHANGE_URL;
 
     @GetMapping("/eur-to-uah")
     public String currencyToUah (@RequestParam(value = "EUR") BigDecimal quantity) {
@@ -29,7 +32,7 @@ public class RESTController {
 
         //get result using FeignClient
         ResponseEntity<CurrencyConversionBean> responseEntity = new RestTemplate().getForEntity(
-                "http://localhost:8100/conversion-FeignClient/from/{from}/to/{to}/quantity/{quantity}",
+                CURRENCYEXCHANGE_URL + "/conversion-FeignClient/from/{from}/to/{to}/quantity/{quantity}",
                 CurrencyConversionBean.class, uriVariables);
 
 

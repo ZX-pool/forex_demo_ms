@@ -1,7 +1,11 @@
-FROM alpine:3.13
 
-RUN apk add openjdk11
+FROM maven:latest AS build
+COPY src /home/app/src
+COPY pom.xml /home/app
+RUN mvn -f /home/app/pom.xml clean package
 
-COPY target/currencyexchange-1.jar /app.jar
 
+FROM openjdk:11-jre-slim
+COPY --from=build /home/app/target/webexchange-1.jar /app.jar
 ENTRYPOINT ["java", "-jar", "/app.jar"]
+

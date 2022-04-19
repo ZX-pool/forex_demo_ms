@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: forex-deployment
+  name: forex
   labels:
     app: forex
 spec:
@@ -16,13 +16,20 @@ spec:
     spec:
       containers:
         - name: forex
-          image: zx_pool/forex:1.0.0
+          image: zxpool/forex:1.4
           ports:
             - containerPort: 8000
           env:
             - name: MYSQL_HOST
-              value: 172.25.80.1
+              value: mysql
             - name: MYSQL_PORT
               value: "3306"
+            - name: MYSQL_USER
+              value: root
+            - name: MYSQL_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: password
 
 

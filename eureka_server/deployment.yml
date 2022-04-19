@@ -1,28 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: forex-deployment
+  name: eureka-deployment
   labels:
-    app: forex
+    app: eureka
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: forex
+      run: eureka
   template:
     metadata:
       labels:
-        app: forex
+        run: eureka
     spec:
       containers:
-        - name: forex
-          image: zx_pool/forex:1.0.0
+        - name: eureka
+          image: zxpool/eureka:1
           ports:
-            - containerPort: 8000
-          env:
-            - name: MYSQL_HOST
-              value: 172.25.80.1
-            - name: MYSQL_PORT
-              value: "3306"
+            - containerPort: 8761
+
 
 

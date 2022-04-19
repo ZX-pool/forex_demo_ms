@@ -1,0 +1,22 @@
+server:
+  port: 80
+
+spring:
+  application:
+    name: webexchange
+  thymeleaf:
+    cache: false
+    enabled: true
+    prefix: classpath:/templates/
+    suffix: .html
+
+eureka:
+  client:
+    enabled: false
+    service-url:
+      default-zone: http://${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}/eureka
+
+currencyexchange:
+  url: http://${CURRENCYEXCHANGE_HOST:localhost}:${CURRENCYEXCHANGE_PORT:8100}
+
+

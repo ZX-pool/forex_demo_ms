@@ -1,28 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: currencyexchange-deployment
+  name: webexchange
   labels:
-    app: currencyexchange
+    app: webexchange
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: currencyexchange
+      app: webexchange
   template:
     metadata:
       labels:
-        app: currencyexchange
+        app: webexchange
     spec:
       containers:
-        - name: currencyexchange
-          image: zxpool/currencyexchange:1
+        - name: webexchange
+          image: zxpool/webexchange:$COMMIT_SHA
           ports:
-            - containerPort: 8100
+            - containerPort: 80
           env:
             - name: EUREKA_HOST
               value: eureka
             - name: EUREKA_PORT
               value: "8761"
-
+            - name: CURRENCYEXCHANGE_HOST
+              value: currencyexchange
+            - name: CURRENCYEXCHANGE_PORT
+              value: "8100"
 

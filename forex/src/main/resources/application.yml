@@ -1,10 +1,11 @@
 server:
   port: 8000
 
-#eureka:
-#  client:
-#    service-url:
-#      default-zone: http://localhost:8761/eureka
+eureka:
+  client:
+    enabled: false
+    service-url:
+      default-zone: http://${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}/eureka
 
 spring:
   application:
@@ -18,7 +19,10 @@ spring:
     database: mysql
     show-sql: true
   datasource:
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:3333/exchange_value_source?createDatabaseIfNotExist=true
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/exchange_value_source?createDatabaseIfNotExist=true
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: admin
-    password: admin
+    username: ${MYSQL_USER:admin}
+    password: ${MYSQL_PASS:admin}
+
+
+

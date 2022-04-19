@@ -1,35 +1,32 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: forex-deployment
+  name: currencyexchange
   labels:
-    app: forex
+    app: currencyexchange
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: forex
+      app: currencyexchange
   template:
     metadata:
       labels:
-        app: forex
+        app: currencyexchange
     spec:
       containers:
-        - name: forex
-          image: zxpool/forex:1
+        - name: currencyexchange
+          image: zxpool/currencyexchange:1.4
           ports:
-            - containerPort: 8000
+            - containerPort: 8100
           env:
-            - name: MYSQL_HOST
-              value: mysql
-            - name: MYSQL_PORT
-              value: "3306"
-            - name: MYSQL_USER
-              value: root
-            - name: MYSQL_PASS
-              valueFrom:
-                secretKeyRef:
-                  name: mysql-secret
-                  key: password
+            - name: EUREKA_HOST
+              value: eureka
+            - name: EUREKA_PORT
+              value: "8761"
+            - name: FOREX_HOST
+              value: forex
+            - name: FOREX_PORT
+              value: "8000"
 
 
