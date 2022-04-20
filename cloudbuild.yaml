@@ -22,6 +22,7 @@ steps:
       - --filename=WEB_currency_exchange/deployment.yml
       - --image=$_FULL_IMAGENAME
       - --location=us-central1-c
+      - --project=forexdemo
       - --cluster=forexdemo-cluster
 
 substitutions:
