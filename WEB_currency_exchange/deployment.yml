@@ -16,6 +16,7 @@ spec:
     spec:
       containers:
         - name: webexchange
+          image: us-central1-docker.pkg.dev/titanium-deck-347513/forex-docker-repo/webexchange:latest
           ports:
             - containerPort: 80
           env:
