@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: webexchange
-          image: gcr.io/$PROJECT_ID/webexchange:$COMMIT_SHA
+          image: webexchange
           ports:
             - containerPort: 80
           env:

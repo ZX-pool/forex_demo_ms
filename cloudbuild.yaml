@@ -4,21 +4,27 @@ steps:
     args:
       - build
       - -t
-      - gcr.io/$PROJECT_ID/webexchange:$COMMIT_SHA
+      - $_FULL_IMAGENAME
       - -f
       - WEB_currency_exchange/Dockerfile
       - .
 
-  # Push webexchange image to Google Cloud Registry
+  # Push webexchange image to Artifact Registry
   - name: gcr.io/cloud-builders/docker
     args:
       - push
-      - gcr.io/$PROJECT_ID/webexchange:$COMMIT_SHA
+      - $_FULL_IMAGENAME
 
+  # Deploy image to cluster
   - name: gcr.io/cloud-builders/gke-deploy
     args:
       - run
       - --filename=WEB_currency_exchange/deployment.yml
-      - --image=gcr.io/$PROJECT_ID/webexchange:$COMMIT_SHA
+      - --image=$_FULL_IMAGENAME
       - --location=us-central1-c
       - --cluster=forexdemo-cluster
+
+substitutions:
+  _FULL_IMAGENAME    : us-central1-docker.pkg.dev/${PROJECT_ID}/${_ARTIFACT_REGISTRY}/${_DOCKER_IMAGENAME}:${SHORT_SHA}
+  _ARTIFACT_REGISTRY : forex-docker-repo
+  _DOCKER_IMAGENAME  : webexchange
