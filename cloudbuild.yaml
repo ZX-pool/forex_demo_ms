@@ -25,6 +25,8 @@ steps:
       - --project=forexdemo
       - --cluster=forexdemo-cluster
 
+images: # Display the image in the build results - Build Artifacts
+  - $_FULL_IMAGENAME
 substitutions:
   _FULL_IMAGENAME    : us-central1-docker.pkg.dev/${PROJECT_ID}/${_ARTIFACT_REGISTRY}/${_DOCKER_IMAGENAME}:${SHORT_SHA}
   _ARTIFACT_REGISTRY : forex-docker-repo
