@@ -16,7 +16,6 @@ spec:
     spec:
       containers:
         - name: webexchange
-          image: webexchange
           ports:
             - containerPort: 80
           env:
