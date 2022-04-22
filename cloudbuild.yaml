@@ -1,33 +1,64 @@
 steps:
-  # Build webexchange image
+  # Build, push and deploy webexchange
   - name: gcr.io/cloud_builders/docker
-    args:
-      - build
-      - -t
-      - $_FULL_IMAGENAME
-      - -f
-      - WEB_currency_exchange/Dockerfile
-      - .
+    args: ['build', '-t', '$_WEBEXCHANGE_IMAGE', '-f', 'WEB_currency_exchange/Dockerfile', '.']
 
-  # Push webexchange image to Artifact Registry
   - name: gcr.io/cloud-builders/docker
-    args:
-      - push
-      - $_FULL_IMAGENAME
+    args: ['push', '$_WEBEXCHANGE_IMAGE']
 
-  # Deploy image to cluster
   - name: gcr.io/cloud-builders/gke-deploy
     args:
       - run
       - --filename=WEB_currency_exchange/deployment.yml
-      - --image=$_FULL_IMAGENAME
+      - --image=$_WEBEXCHANGE_IMAGE
       - --location=us-central1-c
       - --project=forexdemo
       - --cluster=forexdemo-cluster
 
+
+  # Build, push and deploy currencyexchange
+  - name: gcr.io/cloud_builders/docker
+    args: ['build', '-t', '$_CURRENCYEXCHANGE_IMAGE', '-f', 'currency_exchange/Dockerfile', '.']
+
+  - name: gcr.io/cloud-builders/docker
+    args: ['push', '$_CURRENCYEXCHANGE_IMAGE']
+
+  - name: gcr.io/cloud-builders/gke-deploy
+    args:
+      - run
+      - --filename=currency_exchange/deployment.yml
+      - --image=$_CURRENCYEXCHANGE_IMAGE
+      - --location=us-central1-c
+      - --project=forexdemo
+      - --cluster=forexdemo-cluster
+
+
+  # Build, push and deploy forex
+  - name: gcr.io/cloud_builders/docker
+    args: ['build', '-t', '$_FOREX_IMAGE', '-f', 'forex/Dockerfile', '.']
+
+  - name: gcr.io/cloud-builders/docker
+    args: ['push', '$_FOREX_IMAGE']
+
+  - name: gcr.io/cloud-builders/gke-deploy
+    args:
+      - run
+      - --filename=forex/deployment.yml
+      - --image=$_FOREX_IMAGE
+      - --location=us-central1-c
+      - --project=forexdemo
+      - --cluster=forexdemo-cluster
+
+
+
+
 images: # Display the image in the build results - Build Artifacts
-  - $_FULL_IMAGENAME
+  - $_WEBEXCHANGE_IMAGE
+  - $_CURRENCYEXCHANGE_IMAGE
+  - $_FOREX_IMAGE
+
 substitutions:
-  _FULL_IMAGENAME    : us-central1-docker.pkg.dev/${PROJECT_ID}/${_ARTIFACT_REGISTRY}/${_DOCKER_IMAGENAME}:${SHORT_SHA}
-  _ARTIFACT_REGISTRY : forex-docker-repo
-  _DOCKER_IMAGENAME  : webexchange
+  _ARTIFACT_REGISTRY      : forex-docker-repo
+  _WEBEXCHANGE_IMAGE      : us-central1-docker.pkg.dev/${PROJECT_ID}/${_ARTIFACT_REGISTRY}/webexchange:${SHORT_SHA}
+  _CURRENCYEXCHANGE_IMAGE : us-central1-docker.pkg.dev/${PROJECT_ID}/${_ARTIFACT_REGISTRY}/currencyexchange:${SHORT_SHA}
+  _FOREX_IMAGE            : us-central1-docker.pkg.dev/${PROJECT_ID}/${_ARTIFACT_REGISTRY}/forex:${SHORT_SHA}

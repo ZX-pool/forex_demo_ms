@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: currencyexchange
-          image: zxpool/currencyexchange:1.4
+          image: us-central1-docker.pkg.dev/titanium-deck-347513/forex-docker-repo/currencyexchange:latest
           ports:
             - containerPort: 8100
           env:
