@@ -24,29 +24,11 @@ steps:
   - name: gcr.io/cloud-builders/gke-deploy
     args:
       - run
-      - --filename=WEB_currency_exchange/deployment.yml
+      - --filename=deployment.yml
       - --location=us-central1-c
       - --project=forexdemo
       - --cluster=forexdemo-cluster
       - --image=$_WEBEXCHANGE_IMAGE
-
-  - name: gcr.io/cloud-builders/gke-deploy
-      args:
-        - run
-        - --filename=currency_exchange/deployment.yml
-        - --location=us-central1-c
-        - --project=forexdemo
-        - --cluster=forexdemo-cluster
-        - --image=$_CURRENCYEXCHANGE_IMAGE
-
-  - name: gcr.io/cloud-builders/gke-deploy
-      args:
-        - run
-        - --filename=forex/deployment.yml
-        - --location=us-central1-c
-        - --project=forexdemo
-        - --cluster=forexdemo-cluster
-        - --image=$_FOREX_IMAGE
 
 
 images: # Display the image in the build results - Build Artifacts
