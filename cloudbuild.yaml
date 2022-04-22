@@ -28,6 +28,7 @@ steps:
       - --location=us-central1-c
       - --project=forexdemo
       - --cluster=forexdemo-cluster
+      - --image=$_WEBEXCHANGE_IMAGE
 
 
 images: # Display the image in the build results - Build Artifacts
