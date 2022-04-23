@@ -28,7 +28,7 @@ steps:
       - --location=us-central1-c
       - --project=forexdemo
       - --cluster=forexdemo-cluster
-      - --image=[$_WEBEXCHANGE_IMAGE, $_CURRENCYEXCHANGE_IMAGE, $_FOREX_IMAGE]
+      - --image=$_WEBEXCHANGE_IMAGE
 
 
 images: # Display the image in the build results - Build Artifacts
@@ -38,6 +38,6 @@ images: # Display the image in the build results - Build Artifacts
 
 substitutions:
   _ARTIFACT_REGISTRY      : forex-docker-repo
-  _WEBEXCHANGE_IMAGE      : us-central1-docker.pkg.dev/${PROJECT_ID}/${_ARTIFACT_REGISTRY}/webexchange:${SHORT_SHA}
-  _CURRENCYEXCHANGE_IMAGE : us-central1-docker.pkg.dev/${PROJECT_ID}/${_ARTIFACT_REGISTRY}/currencyexchange:${SHORT_SHA}
-  _FOREX_IMAGE            : us-central1-docker.pkg.dev/${PROJECT_ID}/${_ARTIFACT_REGISTRY}/forex:${SHORT_SHA}
+  _WEBEXCHANGE_IMAGE      : us-central1-docker.pkg.dev/${PROJECT_ID}/${_ARTIFACT_REGISTRY}/webexchange:latest
+  _CURRENCYEXCHANGE_IMAGE : us-central1-docker.pkg.dev/${PROJECT_ID}/${_ARTIFACT_REGISTRY}/currencyexchange:latest
+  _FOREX_IMAGE            : us-central1-docker.pkg.dev/${PROJECT_ID}/${_ARTIFACT_REGISTRY}/forex:latest

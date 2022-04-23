@@ -16,7 +16,8 @@ spec:
     spec:
       containers:
         - name: webexchange
-          image: us-central1-docker.pkg.dev/titanium-deck-347513/forex-docker-repo/webexchange
+          image: us-central1-docker.pkg.dev/titanium-deck-347513/forex-docker-repo/webexchange:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 80
           env:
@@ -47,7 +48,8 @@ spec:
     spec:
       containers:
         - name: currencyexchange
-          image: us-central1-docker.pkg.dev/titanium-deck-347513/forex-docker-repo/currencyexchange
+          image: us-central1-docker.pkg.dev/titanium-deck-347513/forex-docker-repo/currencyexchange:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 8100
           env:
@@ -78,7 +80,8 @@ spec:
     spec:
       containers:
         - name: forex
-          image: us-central1-docker.pkg.dev/titanium-deck-347513/forex-docker-repo/forex
+          image: us-central1-docker.pkg.dev/titanium-deck-347513/forex-docker-repo/forex:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 8000
           env:
