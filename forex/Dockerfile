@@ -2,7 +2,7 @@
 FROM maven:latest AS build
 COPY forex/src /home/app/src
 COPY forex/pom.xml /home/app
-RUN mvn -f /home/app/pom.xml -DskipTests clean package
+RUN mvn -f /home/app/pom.xml clean package
 
 
 FROM openjdk:11-jre-slim
