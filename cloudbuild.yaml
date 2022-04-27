@@ -39,10 +39,10 @@ steps:
        - CLOUDSDK_CONTAINER_CLUSTER=forexdemo-cluster
        - CLOUDSDK_CORE_PROJECT=forexdemo
 
-images: # Display the image in the build results - Build Artifacts
-  - $_WEBEXCHANGE_IMAGE
-  - $_CURRENCYEXCHANGE_IMAGE
-  - $_FOREX_IMAGE
+#images: # Display the image in the build results - Build Artifacts
+#  - $_WEBEXCHANGE_IMAGE
+#  - $_CURRENCYEXCHANGE_IMAGE
+#  - $_FOREX_IMAGE
 
 substitutions:
   _ARTIFACT_REGISTRY      : forex-docker-repo
