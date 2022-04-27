@@ -15,7 +15,7 @@ steps:
 
   # Build, push forex
   - name: gcr.io/cloud_builders/docker
-    args: ['build', '-t', '$_FOREX_IMAGE', '-f', 'forex/Dockerfile', '.']
+    args: ['build', '-Dmaven.test.skip=true', '-t', '$_FOREX_IMAGE', '-f', 'forex/Dockerfile', '.']
 
   - name: gcr.io/cloud-builders/docker
     args: ['push', '$_FOREX_IMAGE']
