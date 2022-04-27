@@ -1,25 +1,26 @@
 steps:
-#  # Build, push webexchange
-#  - name: gcr.io/cloud_builders/docker
-#    args: ['build', '-t', '$_WEBEXCHANGE_IMAGE', '-f', 'WEB_currency_exchange/Dockerfile', '.']
-#
-#  - name: gcr.io/cloud-builders/docker
-#    args: ['push', '$_WEBEXCHANGE_IMAGE']
-#
-#  # Build, push currencyexchange
-#  - name: gcr.io/cloud_builders/docker
-#    args: ['build', '-t', '$_CURRENCYEXCHANGE_IMAGE', '-f', 'currency_exchange/Dockerfile', '.']
-#
-#  - name: gcr.io/cloud-builders/docker
-#    args: ['push', '$_CURRENCYEXCHANGE_IMAGE']
-#
-#  # Build, push forex
-#  - name: gcr.io/cloud_builders/docker
-#    args: ['build', '-t', '$_FOREX_IMAGE', '-f', 'forex/Dockerfile', '.']
-#
-#  - name: gcr.io/cloud-builders/docker
-#    args: ['push', '$_FOREX_IMAGE']
+  # Build, push webexchange
+  - name: gcr.io/cloud_builders/docker
+    args: ['build', '-t', '$_WEBEXCHANGE_IMAGE', '-f', 'WEB_currency_exchange/Dockerfile', '.']
 
+  - name: gcr.io/cloud-builders/docker
+    args: ['push', '$_WEBEXCHANGE_IMAGE']
+
+  # Build, push currencyexchange
+  - name: gcr.io/cloud_builders/docker
+    args: ['build', '-t', '$_CURRENCYEXCHANGE_IMAGE', '-f', 'currency_exchange/Dockerfile', '.']
+
+  - name: gcr.io/cloud-builders/docker
+    args: ['push', '$_CURRENCYEXCHANGE_IMAGE']
+
+  # Build, push forex
+  - name: gcr.io/cloud_builders/docker
+    args: ['build', '-t', '$_FOREX_IMAGE', '-f', 'forex/Dockerfile', '.']
+
+  - name: gcr.io/cloud-builders/docker
+    args: ['push', '$_FOREX_IMAGE']
+
+  # deploy webexchange, currencyexchange, forex
   - name: gcr.io/cloud-builders/kubectl
     args: [ 'delete', 'deployments', '--all' ]
     env:
@@ -27,7 +28,22 @@ steps:
       - CLOUDSDK_CONTAINER_CLUSTER=forexdemo-cluster
       - CLOUDSDK_CORE_PROJECT=forexdemo
 
-  # deploy webexchange, currencyexchange, forex
+  - name: gcr.io/cloud-builders/kubectl
+    args: [ 'apply', '-f', 'deployment.yml' ]
+    env:
+       - CLOUDSDK_COMPUTE_ZONE=us-central1-c
+       - CLOUDSDK_CONTAINER_CLUSTER=forexdemo-cluster
+       - CLOUDSDK_CORE_PROJECT=forexdemo
+
+
+substitutions:
+  _PROJECT_ID             : titanium-deck-347513
+  _ARTIFACT_REGISTRY      : forex-docker-repo
+  _WEBEXCHANGE_IMAGE      : us-central1-docker.pkg.dev/${_PROJECT_ID}/${_ARTIFACT_REGISTRY}/webexchange:latest
+  _CURRENCYEXCHANGE_IMAGE : us-central1-docker.pkg.dev/${_PROJECT_ID}/${_ARTIFACT_REGISTRY}/currencyexchange:latest
+  _FOREX_IMAGE            : us-central1-docker.pkg.dev/${_PROJECT_ID}/${_ARTIFACT_REGISTRY}/forex:latest
+
+
 #  - name: gcr.io/cloud-builders/gke-deploy
 #    args:
 #      - run
@@ -37,21 +53,7 @@ steps:
 #      - --cluster=forexdemo-cluster
 #      - --image=$_WEBEXCHANGE_IMAGE
 
-
-  - name: gcr.io/cloud-builders/kubectl
-    args: [ 'apply', '-f', 'deployment.yml' ]
-    env:
-       - CLOUDSDK_COMPUTE_ZONE=us-central1-c
-       - CLOUDSDK_CONTAINER_CLUSTER=forexdemo-cluster
-       - CLOUDSDK_CORE_PROJECT=forexdemo
-
 #images: # Display the image in the build results - Build Artifacts
 #  - $_WEBEXCHANGE_IMAGE
 #  - $_CURRENCYEXCHANGE_IMAGE
 #  - $_FOREX_IMAGE
-
-substitutions:
-  _ARTIFACT_REGISTRY      : forex-docker-repo
-  _WEBEXCHANGE_IMAGE      : us-central1-docker.pkg.dev/${PROJECT_ID}/${_ARTIFACT_REGISTRY}/webexchange:latest
-  _CURRENCYEXCHANGE_IMAGE : us-central1-docker.pkg.dev/${PROJECT_ID}/${_ARTIFACT_REGISTRY}/currencyexchange:latest
-  _FOREX_IMAGE            : us-central1-docker.pkg.dev/${PROJECT_ID}/${_ARTIFACT_REGISTRY}/forex:latest
