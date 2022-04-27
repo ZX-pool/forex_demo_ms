@@ -35,8 +35,9 @@ steps:
   - name: gcr.io/cloud-builders/kubectl
     args: [ 'apply', '-f', 'deployment.yml' ]
     env:
-       - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
-       - 'CLOUDSDK_CONTAINER_CLUSTER=forexdemo-cluster'
+       - CLOUDSDK_COMPUTE_ZONE=us-central1-c
+       - CLOUDSDK_CONTAINER_CLUSTER=forexdemo-cluster
+       - CLOUDSDK_CORE_PROJECT=forexdemo
 
 images: # Display the image in the build results - Build Artifacts
   - $_WEBEXCHANGE_IMAGE
