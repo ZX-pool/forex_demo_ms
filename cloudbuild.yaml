@@ -1,24 +1,24 @@
 steps:
-  # Build, push webexchange
-  - name: gcr.io/cloud_builders/docker
-    args: ['build', '-t', '$_WEBEXCHANGE_IMAGE', '-f', 'WEB_currency_exchange/Dockerfile', '.']
-
-  - name: gcr.io/cloud-builders/docker
-    args: ['push', '$_WEBEXCHANGE_IMAGE']
-
-  # Build, push currencyexchange
-  - name: gcr.io/cloud_builders/docker
-    args: ['build', '-t', '$_CURRENCYEXCHANGE_IMAGE', '-f', 'currency_exchange/Dockerfile', '.']
-
-  - name: gcr.io/cloud-builders/docker
-    args: ['push', '$_CURRENCYEXCHANGE_IMAGE']
-
-  # Build, push forex
-  - name: gcr.io/cloud_builders/docker
-    args: ['build', '-t', '$_FOREX_IMAGE', '-f', 'forex/Dockerfile', '.']
-
-  - name: gcr.io/cloud-builders/docker
-    args: ['push', '$_FOREX_IMAGE']
+#  # Build, push webexchange
+#  - name: gcr.io/cloud_builders/docker
+#    args: ['build', '-t', '$_WEBEXCHANGE_IMAGE', '-f', 'WEB_currency_exchange/Dockerfile', '.']
+#
+#  - name: gcr.io/cloud-builders/docker
+#    args: ['push', '$_WEBEXCHANGE_IMAGE']
+#
+#  # Build, push currencyexchange
+#  - name: gcr.io/cloud_builders/docker
+#    args: ['build', '-t', '$_CURRENCYEXCHANGE_IMAGE', '-f', 'currency_exchange/Dockerfile', '.']
+#
+#  - name: gcr.io/cloud-builders/docker
+#    args: ['push', '$_CURRENCYEXCHANGE_IMAGE']
+#
+#  # Build, push forex
+#  - name: gcr.io/cloud_builders/docker
+#    args: ['build', '-t', '$_FOREX_IMAGE', '-f', 'forex/Dockerfile', '.']
+#
+#  - name: gcr.io/cloud-builders/docker
+#    args: ['push', '$_FOREX_IMAGE']
 
 
   # deploy webexchange, currencyexchange, forex
