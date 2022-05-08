@@ -80,7 +80,8 @@ spec:
     spec:
       containers:
         - name: forex
-          image: us-central1-docker.pkg.dev/titanium-deck-347513/forex-docker-repo/forex:latest
+#          image: us-central1-docker.pkg.dev/titanium-deck-347513/forex-docker-repo/forex:latest
+          image: ${FOREX_IMAGE}
           imagePullPolicy: Always
           ports:
             - containerPort: 8000
