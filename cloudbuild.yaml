@@ -34,7 +34,6 @@ steps:
        - CLOUDSDK_COMPUTE_ZONE=us-central1-c
        - CLOUDSDK_CONTAINER_CLUSTER=forexdemo-cluster
        - CLOUDSDK_CORE_PROJECT=forexdemo
-       - FOREX_IMAGE=$_FOREX_IMAGE
 
 
 substitutions:
